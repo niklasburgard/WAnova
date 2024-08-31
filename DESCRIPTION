@@ -1,0 +1,19 @@
+Package: WAnova
+Type: Package
+Title: Welch's Anova from summary statistics
+Version: 0.1.0
+Author: Niklas A. Burgard
+Maintainer: Niklas A. Burgard <info@burgard.online>
+Description: The package contains the functions to perform a Welch's one-way Anova with fixed effects
+  based on summary statistics (sample size, means, standard deviation) and the Games-Howell post hoc test
+  for multiple comparison and provides the effect size estimator adjusted omega squared.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3

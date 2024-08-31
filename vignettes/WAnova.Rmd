@@ -1,0 +1,55 @@
+---
+title: "WAnova"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{WAnova}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(WAnova)
+```
+
+Generate an example dataset
+
+```{r}
+probe_data <- data.frame(
+  group = c("probe_a", "probe_b", "probe_c"),
+  size = c(10, 9, 8),
+  mean = c(43.00000, 33.44444, 35.75000),
+  sd = c(4.027682, 9.302031, 16.298554)
+)
+
+probe_data
+```
+
+Run the Welch's Anova
+
+```{r}
+w.anova <- welch_anova.test(probe_data$group,
+                            probe_data$size,
+                            probe_data$mean,
+                            probe_data$sd,
+                            effsize = "Kirk")
+
+summary(w.anova)
+```
+
+```{r}
+post_hoc <- games_howell.test(probe_data$group,
+                              probe_data$size,
+                              probe_data$mean,
+                              probe_data$sd,
+                              conf.level = 0.95)
+print(post_hoc)
+#data.frame(post_hoc)
+```
+

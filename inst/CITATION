@@ -1,0 +1,14 @@
+citHeader("To cite reports in publications, please use:")
+
+
+citEntry(entry = "manual",
+    title = "{reports}: {W}elch's Anova from summary statistics",
+    author = "Niklas A. Burgard",
+    note = "version 0.1.0",
+    year = "2023",
+    url = "https://CRAN.R-project.org/package=WAnova",
+    textVersion  = paste("Burgard, N. A. (2023).",
+        "reports: Welch's Anova from summary statistics",
+        "version 0.1.0.",
+        "https://CRAN.R-project.org/package=WAnova")
+)
