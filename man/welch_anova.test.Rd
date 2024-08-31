@@ -26,8 +26,8 @@ The adjusted omega squared estimator of the effect size is either calculated by 
 of Hays, Kirk or Caroll and Nordholm
 
 Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.
-Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746–759.
-Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s ε and Hays’ ω. Educational and Psychological Measurement, 35(3), 541–554.
+Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.
+Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's \u03B5 and Hays' \u03C9 Educational and Psychological Measurement, 35(3), 541-554.
 }
 \description{
 Welch's one-way ANOVA with fixed effects (between subjects analysis)
@@ -42,4 +42,5 @@ sd = c(4.027682, 9.302031, 16.298554)
 )
 result <- welch_anova.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd, effsize = "Kirk")
 summary(result)
+
 }
