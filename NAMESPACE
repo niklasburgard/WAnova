@@ -2,3 +2,5 @@
 
 S3method(print,wAnova_gh)
 S3method(summary,wAnova)
+export(games_howell.test)
+export(welch_anova.test)

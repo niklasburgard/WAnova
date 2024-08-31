@@ -23,7 +23,8 @@
 #' result
 #' #data.frame(result)
 #'
-games_howell.test <- function(levels, n, means, sd, ..., conf.level = 0.95) {
+#' @export
+games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
   combs        = combn(unique(levels), 2)
   var          = sd^2
   names(var)   = levels
@@ -58,7 +59,7 @@ games_howell.test <- function(levels, n, means, sd, ..., conf.level = 0.95) {
 }
 
 #' @export
-print.wAnova_gh <- function(obj) {
+print.wAnova_gh <- function(obj, ...) {
   cat("Games-Howell Post Hoc Test for Multiple Comparisons\n\n")
   widths <- sapply(obj, function(col) max(nchar(as.character(col))))
 

@@ -18,8 +18,8 @@
 #' of Hays, Kirk or Caroll and Nordholm
 #'
 #' Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.
-#' Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746–759.
-#' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s ε and Hays’ ω. Educational and Psychological Measurement, 35(3), 541–554.
+#' Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.
+#' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's \u03B5 and Hays' \u03C9 Educational and Psychological Measurement, 35(3), 541-554.
 #'
 #' @examples
 #' probe_data <- data.frame(
@@ -30,8 +30,9 @@
 #' )
 #' result <- welch_anova.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd, effsize = "Kirk")
 #' summary(result)
-
-welch_anova.test <- function(levels, n, means, sd, ...,effsize = "Hays"){
+#'
+#' @export
+welch_anova.test <- function(levels, n, means, sd, effsize = "Hays"){
   n            = as.numeric(n)
   means        = as.numeric(means)
   sd           = as.numeric(sd)
@@ -72,16 +73,16 @@ welch_anova.test <- function(levels, n, means, sd, ...,effsize = "Hays"){
 }
 
 #' @export
-summary.wAnova <- function(obj, ...){
-  response   = obj$response
-  variables  = obj$variables
-  n          = sum(obj$n)
-  k          = obj$k
-  f_value    = obj$f_value
-  df_between = obj$df_between
-  df_within  = obj$df_within
-  p_value    = obj$p_value
-  omega_sq  = obj$omega
+summary.wAnova <- function(object, ...){
+  response   = object$response
+  variables  = object$variables
+  n          = sum(object$n)
+  k          = object$k
+  f_value    = object$f_value
+  df_between = object$df_between
+  df_within  = object$df_within
+  p_value    = object$p_value
+  omega_sq  = object$omega
 
   if (p_value <= 0.001){sig_code <- "***"
   } else if (p_value <= 0.01){
@@ -95,11 +96,11 @@ summary.wAnova <- function(obj, ...){
   }
 
   cat("One-way fixed effects Welch ANOVA (between subjects) \n\n")
-  cat(sprintf(" %-22s H0: μᵢ = μⱼ for all i and j\n", "Null hypothesis"))
-  cat(sprintf(" %-22s H1: μᵢ ≠ μⱼ for at least one i ≠ j\n\n", "Alternative hypothesis"))
+  cat(sprintf(" %-22s H0: \u03BC\u2070 = \u03BC\u207F for all i and j\n", "Null hypothesis"))
+  cat(sprintf(" %-22s H1: \u03BC\u2070 \u2260 \u03BC\u207F for at least one i \u2260 j\n\n", "Alternative hypothesis"))
   cat(sprintf(" data: %s and %s\n\n", response, variables))
   cat(sprintf(" %-8s %-4s %-7s %-9s\n", "F value", "df1", "df2", "p-value"))
   cat(sprintf(" %-8.2f %-4d %-7.2f %-9.6f %s\n\n", f_value, df_between, df_within, p_value, sig_code))
   cat(sprintf(" Adj. omega squared est.: %.2f\n---\n",omega_sq))
-  cat("Sig. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\n")
+  cat("Sig. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
 }
