@@ -52,12 +52,12 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
   }))
 
   result <- as.data.frame(statistics, stringsAsFactors = FALSE)
-  colnames(result) <- c('Comparison', 'Mean_Diff', 'SE', 'CI_Lower', 'CI_Upper', 't_value', 'df', 'p_value')
+  colnames(result) <- c('Comparison', 'M.diff', 'SE', 'Low', 'Upp', 't', 'df', 'pval')
   result[c(2:8)] <- lapply(result[c(2:8)], function(x) round(as.numeric(x), 3))
 
-  result$significance <- cut(result$p_value,
-                             breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf),
-                             labels = c("***", "**", "*", ".", ""))
+  result$signif <- cut(result$p_value,
+                       breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf),
+                       labels = c("***", "**", "*", ".", ""))
 
   class(result) <- c('wAnova_gh', class(result))
   return(result)
