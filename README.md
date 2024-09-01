@@ -41,7 +41,7 @@ The confidence level for the interval
 
 References:  
 Welch, B. L. (1951). On the comparison of several mean values: an alternative approach. Biometrika 38.3/4, 330-336.  
-Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.  
+Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston, 486.  
 Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.  
 Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.
 
