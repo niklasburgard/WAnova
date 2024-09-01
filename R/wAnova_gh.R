@@ -40,22 +40,22 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
     n2 <- n[comb[2]]
 
     se <- sqrt(0.5 * (var1 / n1 + var2 / n2))
-    t_value <- abs(m_diff) / se
+    t <- abs(m_diff) / se
     df <- ((var1 / n1) + (var2 / n2))^2 /
       (((var1 / n1)^2 / (n1 - 1)) + ((var2 / n2)^2 / (n2 - 1)))
-    p_value <- stats::ptukey(t_value * sqrt(2), length(unique_levels), df, lower.tail = FALSE)
+    pval <- stats::ptukey(t * sqrt(2), length(unique_levels), df, lower.tail = FALSE)
     conf_margin <- stats::qtukey(conf.level, length(unique_levels), df) * se
     lower <- m_diff - conf_margin
     upper <- m_diff + conf_margin
 
-    c(paste(comb[1], ":", comb[2]), m_diff, se, lower, upper, t_value, df, p_value)
+    c(paste(comb[1], ":", comb[2]), m_diff, se, lower, upper, t, df, pval)
   }))
 
   result <- as.data.frame(statistics, stringsAsFactors = FALSE)
   colnames(result) <- c('Comparison', 'M.diff', 'SE', 'Low', 'Upp', 't', 'df', 'pval')
   result[c(2:8)] <- lapply(result[c(2:8)], function(x) round(as.numeric(x), 3))
 
-  result$signif <- cut(result$p_value,
+  result$signif <- cut(result$pval,
                        breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf),
                        labels = c("***", "**", "*", ".", ""))
 
