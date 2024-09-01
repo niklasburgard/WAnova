@@ -26,12 +26,18 @@ devtools::install_github("niklasburgard/WAnova")
 welch_anova.test(levels, n, means, sd, effsize = "Hays")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 
-***levels*** Vector with level names of the independent variable  
-***n***      Vector with sample size for each level  
-***means***  Vector with sample mean for each level  
-***sd***     Vector with sample standard deviation for each level  
-***effsize** Options "Hays", "Kirk", "CaN"  
-***conf.level*** The confidence level for the interval
+***levels***  
+Vector with level names of the independent variable  
+***n***  
+Vector with sample size for each level  
+***means***  
+Vector with sample mean for each level  
+***sd***  
+Vector with sample standard deviation for each level  
+**effsize**  
+Options "Hays", "Kirk", "CaN"  
+***conf.level***  
+The confidence level for the interval
 
 References:  
 Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.  
