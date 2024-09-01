@@ -19,6 +19,8 @@ devtools::install_github("niklasburgard/WAnova")
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
 + ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods (Hays, Kirk, Carroll & Nordholm).
 
+*Note: Traditional omega squared assumes homogeneity of variance (e.g. uses unweighted variances and sums of squares calculated by traditional ANOVA), whereas adjusted omega squared accounts for unequal variances by using weights. This adjustment reflects the design of Welch's ANOVA and provides a more reliable measure in such cases.
+
 ## Usage
 
 ### Parameters
