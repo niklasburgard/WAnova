@@ -28,9 +28,9 @@
 games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
   unique_levels <- unique(levels)
   combs <- utils::combn(unique_levels, 2)
-  var <- setNames(sd^2, levels)
-  n <- setNames(as.numeric(n), levels)
-  means <- setNames(as.numeric(means), levels)
+  var <- stats::setNames(sd^2, levels)
+  n <- stats::setNames(as.numeric(n), levels)
+  means <- stats::setNames(as.numeric(means), levels)
 
   statistics <- t(apply(combs, 2, function(comb) {
     m_diff <- means[comb[2]] - means[comb[1]]
