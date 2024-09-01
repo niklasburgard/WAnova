@@ -77,5 +77,4 @@ print.wAnova_gh <- function(x, ...) {
   })
 
   cat(formatted_rows, sep = "\n")
-  NextMethod("print")
 }

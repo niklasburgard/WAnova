@@ -103,6 +103,4 @@ summary.wAnova <- function(object, ...) {
   cat(sprintf(" %-8.2f %-4d %-7.2f %-9.6f %s\n\n", f_value, df_between, df_within, p_value, sig_code))
   cat(sprintf(" Adj. omega squared est.: %.2f\n---\n", omega_sq))
   cat("Significance codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
-
-  NextMethod("summary")
 }
