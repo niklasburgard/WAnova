@@ -40,29 +40,30 @@
 #'}
 #'
 #' @export
-welch_anova.test <- function(levels, n, means, sd, effsize = "Hays"){
-  n            = as.numeric(n)
-  means        = as.numeric(means)
-  sd           = as.numeric(sd)
+welch_anova.test <- function(levels, n, means, sd, effsize = "Hays") {
+  n <- as.numeric(n)
+  means <- as.numeric(means)
+  sd <- as.numeric(sd)
 
-  k            = length(levels)
-  var          = sd^2
-  wt           = n/var
-  wt_gm        = sum(wt*means)/sum(wt)
+  k <- length(levels)
+  var <- sd^2
+  wt <- n / var
+  wt_gm <- sum(wt * means) / sum(wt)
 
-  ss_between   = sum(wt*(means-wt_gm)^2)
-  lambda       = sum((1-wt/sum(wt))^2/(n-1))
+  ss_between <- sum(wt * (means - wt_gm)^2)
+  lambda <- sum((1 - wt / sum(wt))^2 / (n - 1))
 
-  f_stat       = ss_between/(k-1)/(1+2*lambda*(k-2)/(k^2-1))
-  df_between   = k-1
-  df_within    = (k^2-1)/(3*lambda)
-  p_value      = stats::pf(f_stat, df_between, df_within, lower.tail = FALSE)
+  f_stat <- ss_between / ((k - 1) * (1 + 2 * lambda * (k - 2) / (k^2 - 1)))
+  df_between <- k - 1
+  df_within <- (k^2 - 1) / (3 * lambda)
+  p_value <- stats::pf(f_stat, df_between, df_within, lower.tail = FALSE)
 
   omega_sq <- switch(effsize,
-                     "CaN"  = (f_stat - 1) / (((sum(n) - k + 1) / (k - 1)) + f_stat),
+                     "CaN" = (f_stat - 1) / (((sum(n) - k + 1) / (k - 1)) + f_stat),
                      "Kirk" = ((f_stat - 1) * df_between) / ((df_between * (f_stat - 1)) + sum(n)),
                      "Hays" = (f_stat - 1) / (((df_within + 1) / df_between) + f_stat)
   )
+
 
   result <- list(
     variables  = deparse(substitute(levels)),
@@ -80,34 +81,28 @@ welch_anova.test <- function(levels, n, means, sd, effsize = "Hays"){
 }
 
 #' @export
-summary.wAnova <- function(object, ...){
-  response   = object$response
-  variables  = object$variables
-  n          = sum(object$n)
-  k          = object$k
-  f_value    = object$f_value
-  df_between = object$df_between
-  df_within  = object$df_within
-  p_value    = object$p_value
-  omega_sq  = object$omega
+summary.wAnova <- function(object, ...) {
+  response <- object$response
+  variables <- object$variables
+  n <- sum(object$n)
+  k <- object$k
+  f_value <- object$f_value
+  df_between <- object$df_between
+  df_within <- object$df_within
+  p_value <- object$p_value
+  omega_sq <- object$omega_sq
 
-  if (p_value <= 0.001){sig_code <- "***"
-  } else if (p_value <= 0.01){
-    sig_code <- "**"
-  } else if (p_value <= 0.05){
-    sig_code <- "*"
-  } else if (p_value <= 0.1){
-    sig_code <- "."
-  } else {
-    sig_code <- " "
-  }
+  sig_code <- cut(p_value,
+                  breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf),
+                  labels = c("***", "**", "*", ".", " "),
+                  right = FALSE)
 
-  cat("One-way fixed effects Welch ANOVA (between subjects) \n\n")
-  cat(sprintf(" data: %s and %s\n\n", response, variables))
+  cat("One-way fixed effects Welch ANOVA (between subjects)\n\n")
+  cat(sprintf(" Data: %s and %s\n\n", response, variables))
   cat(sprintf(" %-8s %-4s %-7s %-9s\n", "F value", "df1", "df2", "p-value"))
   cat(sprintf(" %-8.2f %-4d %-7.2f %-9.6f %s\n\n", f_value, df_between, df_within, p_value, sig_code))
-  cat(sprintf(" Adj. omega squared est.: %.2f\n---\n",omega_sq))
-  cat("Sig. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+  cat(sprintf(" Adj. omega squared est.: %.2f\n---\n", omega_sq))
+  cat("Significance codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
 
   NextMethod("summary")
 }
