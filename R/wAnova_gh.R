@@ -57,7 +57,8 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
 
   result$signif <- cut(result$pval,
                        breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf),
-                       labels = c("***", "**", "*", ".", ""))
+                       labels = c("***", "**", "*", ".", ""),
+                       right = FALSE)
 
   class(result) <- c('wAnova_gh', class(result))
   return(result)
