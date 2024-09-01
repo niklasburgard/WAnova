@@ -71,6 +71,7 @@ result <- welch_anova.test(
 # Print summary
 summary(result)
 ```
+*note: Omega squared can have values between ± 1. Zero indicates no effect. If the observed F is less than one, omega squared will be negative.
 
 ### Example: Games-Howell Post Hoc Test
 ```
