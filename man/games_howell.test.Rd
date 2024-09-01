@@ -4,9 +4,11 @@
 \alias{games_howell.test}
 \title{games_howell.test}
 \usage{
-games_howell.test(levels, n, means, sd, ..., conf.level = 0.95)
+games_howell.test(levels, n, means, sd, conf.level = 0.95)
 }
 \arguments{
+\item{levels}{Vector with level names of the independent variable}
+
 \item{n}{Vector with sample size for each level}
 
 \item{means}{Vector with sample mean for each level}
@@ -14,8 +16,6 @@ games_howell.test(levels, n, means, sd, ..., conf.level = 0.95)
 \item{sd}{Vector with sample standard deviation for each level}
 
 \item{conf.level}{Optional (standard set to 0.95)}
-
-\item{object}{Vector with level names of the independent variable}
 }
 \value{
 A dataframe of class "wAnova_gh" that contains the pairwise comparison with mean differences,
@@ -25,6 +25,7 @@ standard error, confidence interval, t-value, df, p-value
 Games-Howell post hoc test for multiple comparison after Welch's Anova
 }
 \examples{
+\dontrun{
 probe_data <- data.frame(
 group = c("probe_a", "probe_b", "probe_c"),
 size = c(10, 9, 8),
@@ -34,5 +35,6 @@ sd = c(4.027682, 9.302031, 16.298554)
 result <- games_howell.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd)
 result
 #data.frame(result)
+}
 
 }

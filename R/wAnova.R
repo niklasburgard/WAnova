@@ -4,7 +4,7 @@
 #' from summary statistics with unequal (unknown) variances.
 #'
 #'
-#' @param object Vector with level names of the independent variable
+#' @param levels Vector with level names of the independent variable
 #' @param n Vector with sample size for each level
 #' @param means Vector with sample mean for each level
 #' @param sd Vector with sample standard deviation for each level
@@ -22,14 +22,22 @@
 #' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's \u03B5 and Hays' \u03C9 Educational and Psychological Measurement, 35(3), 541-554.
 #'
 #' @examples
+#' \dontrun{
 #' probe_data <- data.frame(
-#' group = c("probe_a", "probe_b", "probe_c"),
-#' size = c(10, 9, 8),
-#' mean = c(43.00000, 33.44444, 35.75000),
-#' sd = c(4.027682, 9.302031, 16.298554)
+#'   group = c("probe_a", "probe_b", "probe_c"),
+#'   size = c(10, 9, 8),
+#'   mean = c(43.00000, 33.44444, 35.75000),
+#'   sd = c(4.027682, 9.302031, 16.298554)
 #' )
-#' result <- welch_anova.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd, effsize = "Kirk")
+#' result <- welch_anova.test(
+#'   levels = probe_data$group,
+#'   n = probe_data$size,
+#'   means = probe_data$mean,
+#'   sd = probe_data$sd,
+#'   effsize = "Kirk"
+#' )
 #' summary(result)
+#'}
 #'
 #' @export
 welch_anova.test <- function(levels, n, means, sd, effsize = "Hays"){
@@ -48,14 +56,13 @@ welch_anova.test <- function(levels, n, means, sd, effsize = "Hays"){
   f_stat       = ss_between/(k-1)/(1+2*lambda*(k-2)/(k^2-1))
   df_between   = k-1
   df_within    = (k^2-1)/(3*lambda)
-  p_value      = pf(f_stat, df_between, df_within, lower.tail = FALSE)
+  p_value      = stats::pf(f_stat, df_between, df_within, lower.tail = FALSE)
 
-  if(effsize == "CaN"){
-    omega_sq = (f_stat-1)/(((sum(n)-k+1)/(k-1))+f_stat)
-  } else if (effsize == "Kirk"){
-    omega_sq = ((f_stat - 1) * df_between) / ((df_between * (f_stat - 1)) + sum(n))
-  } else {
-    omega_sq = (f_stat-1)/(((df_within+1)/df_between)+f_stat)}
+  omega_sq <- switch(effsize,
+                     "CaN"  = (f_stat - 1) / (((sum(n) - k + 1) / (k - 1)) + f_stat),
+                     "Kirk" = ((f_stat - 1) * df_between) / ((df_between * (f_stat - 1)) + sum(n)),
+                     "Hays" = (f_stat - 1) / (((df_within + 1) / df_between) + f_stat)
+  )
 
   result <- list(
     variables  = deparse(substitute(levels)),

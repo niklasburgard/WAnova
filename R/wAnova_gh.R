@@ -3,7 +3,7 @@
 #' @description Games-Howell post hoc test for multiple comparison after Welch's Anova
 #'
 #'
-#' @param object Vector with level names of the independent variable
+#' @param levels Vector with level names of the independent variable
 #' @param n Vector with sample size for each level
 #' @param means Vector with sample mean for each level
 #' @param sd Vector with sample standard deviation for each level
@@ -13,6 +13,7 @@
 #' standard error, confidence interval, t-value, df, p-value
 #'
 #' @examples
+#' \dontrun{
 #' probe_data <- data.frame(
 #' group = c("probe_a", "probe_b", "probe_c"),
 #' size = c(10, 9, 8),
@@ -22,10 +23,11 @@
 #' result <- games_howell.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd)
 #' result
 #' #data.frame(result)
+#'}
 #'
 #' @export
 games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
-  combs        = combn(unique(levels), 2)
+  combs        = utils::combn(unique(levels), 2)
   var          = sd^2
   names(var)   = levels
   names(n)     = levels
@@ -40,10 +42,10 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
 
     t    <- abs(m.diff) / sqrt((var1 / n1) + (var2 / n2))
     df   <- ((var1 / n1) + (var2 / n2))^2 /(((var1 / n1)^2 / (n1 - 1)) + ((var2 / n2)^2 / (n2 - 1)))
-    p_value <- ptukey(t * sqrt(2), length(unique(levels)), df, lower.tail = FALSE)
+    p_value <- stats::ptukey(t * sqrt(2), length(unique(levels)), df, lower.tail = FALSE)
     se   <- sqrt(0.5 * (var1 / n1 + var2 / n2))
-    upp  <- m.diff + qtukey(conf.level, length(unique(levels)), df) * se
-    low  <- m.diff - qtukey(conf.level, length(unique(levels)), df) * se
+    upp  <- m.diff + stats::qtukey(conf.level, length(unique(levels)), df) * se
+    low  <- m.diff - stats::qtukey(conf.level, length(unique(levels)), df) * se
 
     c(paste(comb[1], ":", comb[2]), m.diff, se, low, upp, t, df, p_value)
   }))
@@ -59,14 +61,14 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
 }
 
 #' @export
-print.wAnova_gh <- function(obj, ...) {
+print.wAnova_gh <- function(x, ...) {
   cat("Games-Howell Post Hoc Test for Multiple Comparisons\n\n")
-  widths <- sapply(obj, function(col) max(nchar(as.character(col))))
+  widths <- sapply(x, function(col) max(nchar(as.character(col))))
 
-  col_names <- sprintf(paste0("%-", widths, "s"), colnames(obj))
+  col_names <- sprintf(paste0("%-", widths, "s"), colnames(x))
   cat(paste(col_names, collapse = "\t"), "\n")
 
-  formatted_rows <- apply(obj, 1, function(row) {
+  formatted_rows <- apply(x, 1, function(row) {
     formatted_row <- sprintf(paste0("%-", widths, "s"), row)
     paste(formatted_row, collapse = "\t")
   })

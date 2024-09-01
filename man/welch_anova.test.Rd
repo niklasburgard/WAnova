@@ -4,9 +4,11 @@
 \alias{welch_anova.test}
 \title{welch_anova.test}
 \usage{
-welch_anova.test(levels, n, means, sd, ..., effsize = "Hays")
+welch_anova.test(levels, n, means, sd, effsize = "Hays")
 }
 \arguments{
+\item{levels}{Vector with level names of the independent variable}
+
 \item{n}{Vector with sample size for each level}
 
 \item{means}{Vector with sample mean for each level}
@@ -14,8 +16,6 @@ welch_anova.test(levels, n, means, sd, ..., effsize = "Hays")
 \item{sd}{Vector with sample standard deviation for each level}
 
 \item{effsize}{Options "Hays" (standard), "Kirk", "CaN" (see below)}
-
-\item{object}{Vector with level names of the independent variable}
 }
 \value{
 A list of class "wAnova" that contains the F-value, df-between, df-within,
@@ -34,13 +34,21 @@ Welch's one-way ANOVA with fixed effects (between subjects analysis)
 from summary statistics with unequal (unknown) variances.
 }
 \examples{
+\dontrun{
 probe_data <- data.frame(
-group = c("probe_a", "probe_b", "probe_c"),
-size = c(10, 9, 8),
-mean = c(43.00000, 33.44444, 35.75000),
-sd = c(4.027682, 9.302031, 16.298554)
+  group = c("probe_a", "probe_b", "probe_c"),
+  size = c(10, 9, 8),
+  mean = c(43.00000, 33.44444, 35.75000),
+  sd = c(4.027682, 9.302031, 16.298554)
 )
-result <- welch_anova.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd, effsize = "Kirk")
+result <- welch_anova.test(
+  levels = probe_data$group,
+  n = probe_data$size,
+  means = probe_data$mean,
+  sd = probe_data$sd,
+  effsize = "Kirk"
+)
 summary(result)
+}
 
 }
