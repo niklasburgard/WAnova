@@ -103,8 +103,6 @@ summary.wAnova <- function(object, ...){
   }
 
   cat("One-way fixed effects Welch ANOVA (between subjects) \n\n")
-  cat(sprintf(" %-22s H0: \u03BC\u1D62 = \u03BC\u2C7C for all i and j\n", "Null hypothesis"))
-  cat(sprintf(" %-22s H1: \u03BC\u1D62 \u2260 \u03BC\u2C7C for at least one i \u2260 j\n\n", "Alternative hypothesis"))
   cat(sprintf(" data: %s and %s\n\n", response, variables))
   cat(sprintf(" %-8s %-4s %-7s %-9s\n", "F value", "df1", "df2", "p-value"))
   cat(sprintf(" %-8.2f %-4d %-7.2f %-9.6f %s\n\n", f_value, df_between, df_within, p_value, sig_code))
