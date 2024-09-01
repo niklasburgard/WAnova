@@ -89,13 +89,13 @@ print(posthoc_result)
 
 To cite the WAnova package in publications, please use:
 ```
-Niklas A. Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.1.1. https://CRAN.R-project.org/package=WAnova
+Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.1.0. https://CRAN.R-project.org/package=WAnova
 ```
 You can also find a BibTeX entry for LaTeX users:
 ```
 @Manual{,
   title = {WAnova: Welch's Anova from Summary Statistics},
-  author = {Niklas A. Burgard},
+  author = {Niklas Burgard},
   year = {2023},
   note = {R package version 0.1.0},
   url = {https://CRAN.R-project.org/package=WAnova},

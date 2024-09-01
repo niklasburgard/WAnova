@@ -1,29 +1,30 @@
 citHeader("To cite this package in publications, please use:")
 
-citEntry(entry = "manual",
+bibentry(
+    bibtype = "Manual",
     title = "WAnova: Welch's Anova from Summary Statistics",
-    author = "Niklas A. Burgard",
+    author = "Niklas Burgard",
     year = "2023",
-    version = "0.1.1",
+    version = "0.1.0",
     url = "https://CRAN.R-project.org/package=WAnova",
-    textVersion = paste("Burgard, N. A. (2023).",
+    textVersion = paste("Burgard, N. (2023).",
                         "WAnova: Welch's Anova from Summary Statistics.",
-                        "Version 0.1.0.",
+                        "Version 0.1.0",
                         "https://CRAN.R-project.org/package=WAnova")
 )
 
-
 citFooter("Corresponding BibTeX entry:")
 
-citEntry(entry = "manual",
+bibentry(
+    bibtype = "Manual",
     title = "WAnova: Welch's Anova from Summary Statistics",
-    author = "Niklas A. Burgard",
+    author = "Niklas Burgard",
     year = "2023",
-    version = "0.1.1",
+    version = "0.1.0",
     url = "https://CRAN.R-project.org/package=WAnova",
     bibtex = "@Manual{,
       title = {WAnova: Welch's Anova from Summary Statistics},
-      author = {Niklas A. Burgard},
+      author = {Niklas Burgard},
       year = {2023},
       version = {0.1.0},
       url = {https://CRAN.R-project.org/package=WAnova},

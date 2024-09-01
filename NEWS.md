@@ -1,7 +1,5 @@
-# WAnova 0.1.1
+# WAnova 0.1.0
 
-## Minor Bug Fix:
+* initial release
 
-Corrected an issue in the generic output produced by summary() and print().
-This update ensures accurate representation of the welch_anova.test() and
-games_howell.test() outputs.
+
