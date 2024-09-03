@@ -23,6 +23,10 @@ install.packages("devtools")
 
 # Then, install the WAnova package from GitHub:
 devtools::install_github("niklasburgard/WAnova")
+
+# Import packages if not already installed:
+packages <- c("utils", "stats", "SuppDists")
+install.packages(setdiff(packages, rownames(installed.packages())))
 ```
 
 ## Features
@@ -40,18 +44,12 @@ fmax.test(levels,n,sd)
 welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 
-***levels***  
-Vector with level names of the independent variable  
-***n***  
-Vector with sample size for each level  
-***means***  
-Vector with sample mean for each level  
-***sd***  
-Vector with sample standard deviation for each level  
-**effsize**  
-Options "AnL", "Kirk", "CaN"  
-***conf.level***  
-The confidence level for the interval
+***levels*** Vector with level names of the independent variable  
+***n***  Vector with sample size for each level  
+***means*** Vector with sample mean for each level  
+***sd*** Vector with sample standard deviation for each level  
+**effsize** Options "AnL", "Kirk", "CaN"  
+***conf.level*** The confidence level
 
 ### Example: Hartley's Fmax
 ```
@@ -76,6 +74,7 @@ result <- fmax_test(
 print(result)
 ```
 ***Note:*** Applicable results assume normally distributed data with equal sample sizes.  
+
 Null Hypothesis: Assumes homogeneity of variances, which means all groups have the same variance.  
 Alternative Hypothesis: Assumes that not all group variances are equal. This hypothesis is
 supported if the p-value is below the significance level.
