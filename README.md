@@ -15,6 +15,7 @@ devtools::install_github("niklasburgard/WAnova")
 
 ## Features
 
++ ***Hartley's Fmax***: Perform Hartley's Fmax test for homogeneity of variances.
 + ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (mean, standard deviation, sample size).
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
 + ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods ("AnL","Kirk","CaN").
@@ -35,6 +36,7 @@ Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart
 
 ### Parameters
 
+fmax.test(levels,n,sd)
 welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 
@@ -50,6 +52,33 @@ Vector with sample standard deviation for each level
 Options "AnL", "Kirk", "CaN"  
 ***conf.level***  
 The confidence level for the interval
+
+### Example: Hartley's Fmax
+```
+library(WAnova)
+
+# Example data
+probe_data <- data.frame(
+ group = c("probe_a", "probe_b", "probe_c"),
+ size = c(10, 10, 10),  # Equal sample sizes
+ mean = c(43.00000, 33.44444, 35.75000),
+ sd = c(4.027682, 9.302031, 16.298554)
+)
+
+# Perform Hartley's Fmax
+result <- fmax_test(
+ levels = probe_data$group,
+ n = probe_data$size,
+ sd = probe_data$sd
+)
+
+#Print results
+print(result)
+```
+***Note:*** Applicable results assume normally distributed data with equal sample sizes.
+Null Hypothesis: Assumes homogeneity of variances, which means all groups have the same variance.
+Alternative Hypothesis: Assumes that not all group variances are equal. This hypothesis is
+supported if the p-value is below the significance level.
 
 ### Example: Welch's ANOVA
 ```

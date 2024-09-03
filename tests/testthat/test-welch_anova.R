@@ -29,13 +29,13 @@ test_that("welch_anova.test calculates correct values", {
   expect_true(result$p_value > 0 & result$p_value <= 1)
 
   # Test different effect size calculations
-  result_hays <- welch_anova.test(levels, n, means, sd, effsize = "Hays")
+  result_AnL <- welch_anova.test(levels, n, means, sd, effsize = "AnL")
   result_kirk <- welch_anova.test(levels, n, means, sd, effsize = "Kirk")
   result_can <- welch_anova.test(levels, n, means, sd, effsize = "CaN")
 
   # Ensure omega_sq is different for different methods
-  expect_true(result_hays$omega_sq != result_kirk$omega_sq)
-  expect_true(result_hays$omega_sq != result_can$omega_sq)
+  expect_true(result_AnL$omega_sq != result_kirk$omega_sq)
+  expect_true(result_AnL$omega_sq != result_can$omega_sq)
 })
 
 test_that("summary.wAnova prints expected output", {
