@@ -37,15 +37,16 @@ Vector with sample mean for each level
 ***sd***  
 Vector with sample standard deviation for each level  
 **effsize**  
-Options "Hays", "Kirk", "CaN"  
+Options "AnL", "Kirk", "CaN"  
 ***conf.level***  
 The confidence level for the interval
 
-References:  
-Welch, B. L. (1951). On the comparison of several mean values: an alternative approach. Biometrika 38.3/4, 330-336.  
+***References:***  
+***Welch, B. L. (1951)***. On the comparison of several mean values: an alternative approach. Biometrika 38.3/4, 330-336.  
 Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston, 486.  
-Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.  
-Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.
+***Kirk, R. E. (1996)***. Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.  
+***Carroll, R. M., & Nordholm, L. A. (1975)***. Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.  
+***Albers, C., & Lakens, D. (2018)***. When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 
 ### Example: Welch's ANOVA
 ```
@@ -71,7 +72,9 @@ result <- welch_anova.test(
 # Print summary
 summary(result)
 ```
-*note: Omega squared can have values between ± 1. Zero indicates no effect. If the observed F is less than one, omega squared will be negative.
+***Note:*** Omega squared can range from -1 to 1, with zero indicating no effect. When the observed F is less than one, omega squared will be negative. It has been suggested that values of .01, .06 and .14 represent small, medium and large effects, respectively (Kirk 1996).
+
+
 
 ### Example: Games-Howell Post Hoc Test
 ```

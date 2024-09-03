@@ -4,7 +4,7 @@
 \alias{welch_anova.test}
 \title{welch_anova.test}
 \usage{
-welch_anova.test(levels, n, means, sd, effsize = "Hays")
+welch_anova.test(levels, n, means, sd, effsize = "AnL")
 }
 \arguments{
 \item{levels}{Vector with level names of the independent variable}
@@ -15,7 +15,7 @@ welch_anova.test(levels, n, means, sd, effsize = "Hays")
 
 \item{sd}{Vector with sample standard deviation for each level}
 
-\item{effsize}{Options "Hays" (standard), "Kirk", "CaN" (see below)}
+\item{effsize}{Options "AnL" (standard), "Kirk", "CaN" (see below)}
 }
 \value{
 A list of class "wAnova" that contains the F-value, df-between, df-within,
@@ -23,9 +23,9 @@ p-value and effect size omega-squared that can later be converted to a
 table-styled summary using summary()
 
 The adjusted omega squared estimator of the effect size is either calculated by the formula
-of Hays, Kirk or Caroll and Nordholm
+of of Albers and Lakens, Kirk or Caroll and Nordholm
 
-Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.
+Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.
 Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.
 }

@@ -8,16 +8,16 @@
 #' @param n Vector with sample size for each level
 #' @param means Vector with sample mean for each level
 #' @param sd Vector with sample standard deviation for each level
-#' @param effsize Options "Hays" (standard), "Kirk", "CaN" (see below)
+#' @param effsize Options "AnL" (standard), "Kirk", "CaN" (see below)
 #'
 #' @return A list of class "wAnova" that contains the F-value, df-between, df-within,
 #' p-value and effect size omega-squared that can later be converted to a
 #' table-styled summary using summary()
 #'
 #' The adjusted omega squared estimator of the effect size is either calculated by the formula
-#' of Hays, Kirk or Caroll and Nordholm
+#' of of Albers and Lakens, Kirk or Caroll and Nordholm
 #'
-#' Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston.
+#' Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 #' Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.
 #' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.
 #'
@@ -40,8 +40,9 @@
 #'}
 #'
 #' @export
-welch_anova.test <- function(levels, n, means, sd, effsize = "Hays") {
+welch_anova.test <- function(levels, n, means, sd, effsize = "AnL") {
   n <- as.numeric(n)
+  response = deparse(substitute(means))
   means <- as.numeric(means)
   sd <- as.numeric(sd)
 
@@ -61,13 +62,13 @@ welch_anova.test <- function(levels, n, means, sd, effsize = "Hays") {
   omega_sq <- switch(effsize,
                      "CaN" = (f_stat - 1) / (((sum(n) - k + 1) / (k - 1)) + f_stat),
                      "Kirk" = ((f_stat - 1) * df_between) / ((df_between * (f_stat - 1)) + sum(n)),
-                     "Hays" = (f_stat - 1) / (((df_within + 1) / df_between) + f_stat)
+                     "AnL" = (f_stat - 1) / (((df_within + 1) / df_between) + f_stat)
   )
 
 
   result <- list(
     variables  = deparse(substitute(levels)),
-    response   = deparse(substitute(means)),
+    response   = response,
     n          = n,
     k          = k,
     f_value    = f_stat,
