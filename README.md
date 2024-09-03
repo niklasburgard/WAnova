@@ -75,8 +75,8 @@ result <- fmax_test(
 #Print results
 print(result)
 ```
-***Note:*** Applicable results assume normally distributed data with equal sample sizes.
-Null Hypothesis: Assumes homogeneity of variances, which means all groups have the same variance.
+***Note:*** Applicable results assume normally distributed data with equal sample sizes.  
+Null Hypothesis: Assumes homogeneity of variances, which means all groups have the same variance.  
 Alternative Hypothesis: Assumes that not all group variances are equal. This hypothesis is
 supported if the p-value is below the significance level.
 
