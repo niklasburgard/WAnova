@@ -15,7 +15,7 @@
 #' table-styled summary using summary()
 #'
 #' The adjusted omega squared estimator of the effect size is either calculated by the formula
-#' of of Albers and Lakens, Kirk or Caroll and Nordholm
+#' of of Albers and Lakens, Kirk or Caroll and Nordholm (Further notes see README file)
 #'
 #' Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 #' Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.

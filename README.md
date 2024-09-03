@@ -17,15 +17,25 @@ devtools::install_github("niklasburgard/WAnova")
 
 + ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (mean, standard deviation, sample size).
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
-+ ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods (Hays, Kirk, Carroll & Nordholm).
++ ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods ("AnL","Kirk","CaN").
 
-*Note: Traditional omega squared assumes homogeneity of variance (e.g. uses unweighted variances and sums of squares calculated by traditional ANOVA), whereas adjusted omega squared accounts for unequal variances by using weights. This adjustment reflects the design of Welch's ANOVA and provides a more reliable measure in such cases.
+***Note***: Traditional omega squared assumes homogeneity of variance, using parameters calculated in a traditional ANOVA with unweighted means. There are three methods—Kirk ("***Kirk***"), Carroll and Nordholm ("***CaN***"), and Albers and Lakens ("***AnL***")—to estimate omega squared using summary statistics, all of which yield the same result when based on unweighted means.  
+When applying parameters derived from Welch's ANOVA, the ***Kirk*** and ***CaN*** methods produce an adjusted omega squared that reflects the weighted means from the F-statistic but do not account for the corrected within-group degrees of freedom associated with those weighted means.  
+The ***AnL*** method further adjusts omega squared to incorporate these corrected degrees of freedom, aligning with the design of Welch's ANOVA and providing a more accurate measure, making it the preferred approach.
+
+***References:***  
+***Welch, B. L. (1951)***. On the comparison of several mean values: an alternative approach. Biometrika 38.3/4, 330-336.  
+Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston, 486.  
+***Games, P. A., & Howell, J. F. (1976)***. Pairwise Multiple Comparison Procedures with Unequal N’s and/or Variances: A Monte Carlo Study. Journal of Educational and Behavioural Statistics, 1, 113-125.  
+***Kirk, R. E. (1996)***. Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.  
+***Carroll, R. M., & Nordholm, L. A. (1975)***. Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.  
+***Albers, C., & Lakens, D. (2018)***. When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 
 ## Usage
 
 ### Parameters
 
-welch_anova.test(levels, n, means, sd, effsize = "Hays")  
+welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 
 ***levels***  
@@ -40,13 +50,6 @@ Vector with sample standard deviation for each level
 Options "AnL", "Kirk", "CaN"  
 ***conf.level***  
 The confidence level for the interval
-
-***References:***  
-***Welch, B. L. (1951)***. On the comparison of several mean values: an alternative approach. Biometrika 38.3/4, 330-336.  
-Hays, W. L. (1973). Statistics for the social sciences (2nd ed.). Holt, Rinehart and Winston, 486.  
-***Kirk, R. E. (1996)***. Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.  
-***Carroll, R. M., & Nordholm, L. A. (1975)***. Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.  
-***Albers, C., & Lakens, D. (2018)***. When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 
 ### Example: Welch's ANOVA
 ```
