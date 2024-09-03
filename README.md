@@ -2,6 +2,18 @@
 
 'WAnova' is an R package that provides functions for conducting Welch's ANOVA and Games-Howell post hoc tests based on summary statistics. These tests are particularly useful when working with unequal variances and sample sizes.
 
+## Table of content
+
+1. [WAnova](#wanova)
+2. [Installation](#installation)
+3. [Features](#features)
+4. [Usage](#usage)
+    1. [Parameters](#parameters)
+    2. [Example: Hartley's Fmax](#example-hartleys-fmax)
+    3. [Example: Welch's ANOVA](#example-welchs-anova)
+    4. [Example: Games-Howell Post Hoc Test](#example-games-howell-post-hoc-test)
+5. [Citing WAnova](#citing-wanova)
+
 ## Installation
 
 You can install the development version of 'WAnova' from GitHub with:
@@ -24,7 +36,7 @@ devtools::install_github("niklasburgard/WAnova")
 
 ### Parameters
 
-fmax.test(levels,n,sd)
+fmax.test(levels,n,sd)  
 welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 
