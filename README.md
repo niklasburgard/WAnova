@@ -27,7 +27,7 @@ devtools::install_github("niklasburgard/WAnova")
 
 ## Features
 
-+ ***Hartley's Fmax***: Perform Hartley's Fmax test for homogeneity of variances.
++ ***Hartley's Fmax***: Perform Hartley's Fmax to check homogeneity of variances.
 + ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (mean, standard deviation, sample size).
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
 + ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods ("AnL","Kirk","CaN").
