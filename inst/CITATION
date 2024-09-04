@@ -5,11 +5,11 @@ bibentry(
     title = "WAnova: Welch's Anova from Summary Statistics",
     author = "Niklas Burgard",
     year = "2023",
-    version = "0.1.0",
+    version = "0.2.0",
     url = "https://CRAN.R-project.org/package=WAnova",
     textVersion = paste("Burgard, N. (2023).",
                         "WAnova: Welch's Anova from Summary Statistics.",
-                        "Version 0.1.0",
+                        "Version 0.2.0",
                         "https://CRAN.R-project.org/package=WAnova")
 )
 
@@ -20,13 +20,13 @@ bibentry(
     title = "WAnova: Welch's Anova from Summary Statistics",
     author = "Niklas Burgard",
     year = "2023",
-    version = "0.1.0",
+    version = "0.2.0",
     url = "https://CRAN.R-project.org/package=WAnova",
     bibtex = "@Manual{,
       title = {WAnova: Welch's Anova from Summary Statistics},
       author = {Niklas Burgard},
       year = {2023},
-      version = {0.1.0},
+      version = {0.2.0},
       url = {https://CRAN.R-project.org/package=WAnova},
     }"
 )

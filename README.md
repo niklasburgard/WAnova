@@ -16,7 +16,7 @@
 
 ## Installation
 
-You can install the development version of 'WAnova' from GitHub with:
+You can install the latest version of 'WAnova' from GitHub with:
 ```
 # If you don't have devtools installed, first install it:
 install.packages("devtools")
@@ -49,7 +49,7 @@ games_howell.test(levels, n, means, sd, conf.level = 0.95)
 ***means*** Vector with sample mean for each level  
 ***sd*** Vector with sample standard deviation for each level  
 **effsize** Options "AnL", "Kirk", "CaN"  
-***conf.level*** The confidence level
+***conf.level*** Confidence level
 
 ### Example: Hartley's Fmax
 ```
@@ -139,7 +139,7 @@ print(posthoc_result)
 
 To cite the WAnova package in publications, please use:
 ```
-Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.1.1. https://github.com/niklasburgard/WAnova
+Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.2.0. https://github.com/niklasburgard/WAnova
 ```
 You can also find a BibTeX entry for LaTeX users:
 ```
@@ -147,7 +147,7 @@ You can also find a BibTeX entry for LaTeX users:
   title = {WAnova: Welch's Anova from Summary Statistics},
   author = {Niklas Burgard},
   year = {2023},
-  note = {R package version 0.1.1},
+  note = {R package version 0.2.0},
   url = {https://github.com/niklasburgard/WAnova},
 }
 ```
