@@ -54,6 +54,7 @@ games_howell.test(levels, n, means, sd, conf.level = 0.95)
 ### Example: Hartley's Fmax
 ```
 library(WAnova)
+library(SuppDists)
 
 # Example data
 probe_data <- data.frame(
