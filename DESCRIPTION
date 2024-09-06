@@ -1,7 +1,7 @@
 Package: WAnova
 Type: Package
 Title: Welch's Anova from Summary Statistics
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: person(given = c("Niklas"),
                    family = "Burgard",
                    role = c("aut", "cre"),
@@ -9,6 +9,7 @@ Authors@R: person(given = c("Niklas"),
 Description: Provides the functions to perform a Welch's one-way Anova with fixed effects
   based on summary statistics (sample size, means, standard deviation) and the Games-Howell post hoc test
   for multiple comparisons and provides the effect size estimator adjusted omega squared.
+  In addition sample size estimation can be computed based on Levy's method.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

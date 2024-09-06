@@ -35,6 +35,7 @@ install.packages(setdiff(packages, rownames(installed.packages())))
 + ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (mean, standard deviation, sample size).
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
 + ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods ("AnL","Kirk","CaN").
++ ***Sample Size Estimation***: Caclulate the sample sizes based on desired Significance level and power
 
 ## Usage
 
@@ -43,13 +44,16 @@ install.packages(setdiff(packages, rownames(installed.packages())))
 fmax.test(levels,n,sd)  
 welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
+wanova_pwr.test(n, means, sd, power = 0.90, alpha = 0.05)
 
 ***levels*** Vector with level names of the independent variable  
 ***n***  Vector with sample size for each level  
 ***means*** Vector with sample mean for each level  
 ***sd*** Vector with sample standard deviation for each level  
 **effsize** Options "AnL", "Kirk", "CaN"  
-***conf.level*** Confidence level
+***conf.level*** Confidence level used in the computation
+***power*** Significance level for the test
+***alpha*** Desired power of the test
 
 ### Example: Hartley's Fmax
 ```
@@ -134,7 +138,22 @@ print(posthoc_result)
 ```
 
 ***References:***  
-***Games, P. A., & Howell, J. F. (1976)***. Pairwise Multiple Comparison Procedures with Unequal N’s and/or Variances: A Monte Carlo Study. Journal of Educational and Behavioural Statistics, 1, 113-125.  
+***Games, P. A., & Howell, J. F. (1976)***. Pairwise Multiple Comparison Procedures with Unequal N’s and/or Variances: A Monte Carlo Study. Journal of Educational and Behavioural Statistics, 1, 113-125.
+
+### Example: Approximate Sample Size Determination for Welch’s F-Test
+```
+library(WAnova)
+
+n <- c(10, 10, 10, 10)
+means <- c(1, 0, 0, -1)
+sd <- c(1, 1, 1, 1)
+result <- wsize(n, means, sd, power = 0.90, alpha = 0.05)
+print(result)
+```
+
+***References:***  
+***Levy, K. J. (1978a)***. Some empirical power results associated with Welch’s robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43–48.  
+***Show-Li, J., & Gwowen, S. (2014)***. Sample size determinations for Welch's test in one-way heteroscedastic ANOVA . British Psychological Society, 67(1), 72-93.
 
 ### Citing WAnova
 

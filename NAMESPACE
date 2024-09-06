@@ -2,7 +2,9 @@
 
 S3method(print,fmax_test)
 S3method(print,wAnova_gh)
+S3method(print,wsize)
 S3method(summary,wAnova)
 export(fmax_test)
 export(games_howell.test)
+export(wanova_pwr.test)
 export(welch_anova.test)

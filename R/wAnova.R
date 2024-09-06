@@ -40,7 +40,7 @@
 #'}
 #'
 #' @export
-welch_anova.test <- function(levels, n, means, sd, effsize = "AnL", alpha = 0.05) {
+welch_anova.test <- function(levels, n, means, sd, effsize = "AnL") {
   n <- as.numeric(n)
   response = deparse(substitute(means))
   means <- as.numeric(means)
