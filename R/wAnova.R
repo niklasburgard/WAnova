@@ -51,10 +51,11 @@ welch_anova.test <- function(levels, n, means, sd, effsize = "AnL") {
   wt <- n / var
   wt_gm <- sum(wt * means) / sum(wt)
 
-  ss_between <- sum(wt * (means - wt_gm)^2)
+  adj_ess <- sum(wt * (means - wt_gm)^2)
+  adj_ms <- adj_ess/(k-1)
   lambda <- sum((1 - wt / sum(wt))^2 / (n - 1))
 
-  f_stat <- ss_between / ((k - 1) * (1 + 2 * lambda * (k - 2) / (k^2 - 1)))
+  f_stat <- adj_ms / (1 + 2 * lambda * (k - 2) / (k^2 - 1))
   df_between <- k - 1
   df_within <- (k^2 - 1) / (3 * lambda)
   p_value <- stats::pf(f_stat, df_between, df_within, lower.tail = FALSE)
