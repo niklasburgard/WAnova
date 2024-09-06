@@ -30,6 +30,9 @@ This function computes the approximate sample size required to achieve a desired
 The function adjusts the sample sizes iteratively until the desired power level is achieved.
 It uses the F-distribution to determine critical values and compute the power of the test.
 The output includes the sample size required for each group to achieve the specified power.
+
+Reference: Levy, K. J. (1978a). Some empirical power results associated with
+Welch’s robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43–48.
 }
 \examples{
 \dontrun{
@@ -37,7 +40,7 @@ The output includes the sample size required for each group to achieve the speci
 n <- c(10, 10, 10, 10)
 means <- c(1, 0, 0, -1)
 sd <- c(1, 1, 1, 1)
-result <- wsize(n, means, sd, power = 0.90, alpha = 0.05)
+result <- wanova_pwr.test(n, means, sd, power = 0.90, alpha = 0.05)
 print(result)
 }
 
