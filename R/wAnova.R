@@ -22,7 +22,7 @@
 #' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's epsilon and Hays' omega Educational and Psychological Measurement, 35(3), 541-554.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' probe_data <- data.frame(
 #'   group = c("probe_a", "probe_b", "probe_c"),
 #'   size = c(10, 9, 8),

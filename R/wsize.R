@@ -80,7 +80,7 @@ wanova_pwr.test <- function(n, means, sd, power = 0.90, alpha = 0.05) {
 #' @return Prints the sample size determination results to the console.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Print the results from the wsize function
 #' n <- c(10, 10, 10, 10)
 #' means <- c(1, 0, 0, -1)

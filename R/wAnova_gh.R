@@ -13,7 +13,7 @@
 #' Significance codes are also included.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' probe_data <- data.frame(
 #'   group = c("probe_a", "probe_b", "probe_c"),
 #'   size = c(10, 9, 8),
