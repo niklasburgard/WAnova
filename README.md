@@ -12,7 +12,7 @@
     2. [Example: Hartley's Fmax](#example-hartleys-fmax)
     3. [Example: Welch's ANOVA](#example-welchs-anova)
     4. [Example: Games-Howell Post Hoc Test](#example-games-howell-post-hoc-test)
-    5. [Example: Approximate Sample Size Determination for Welch’s F-Test](#example-sample-size)
+    5. [Example: Approximate Sample Size Determination for Welch’s F-Test](#example-approximate-sample-size-determination-for-welchs-f-test)
 5. [Citing WAnova](#citing-wanova)
 
 ## Installation
