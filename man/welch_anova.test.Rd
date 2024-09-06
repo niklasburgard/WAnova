@@ -34,7 +34,7 @@ Welch's one-way ANOVA with fixed effects (between subjects analysis)
 from summary statistics with unequal (unknown) variances.
 }
 \examples{
-\dontrun{
+\donttest{
 probe_data <- data.frame(
   group = c("probe_a", "probe_b", "probe_c"),
   size = c(10, 9, 8),

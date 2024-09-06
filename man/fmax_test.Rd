@@ -38,7 +38,7 @@ critical value from the Fmax distribution to determine if there is significant
 deviation from homogeneity.
 }
 \examples{
-\dontrun{
+\donttest{
 probe_data <- data.frame(
   group = c("probe_a", "probe_b", "probe_c"),
   size = c(10, 10, 10),  # Equal sample sizes

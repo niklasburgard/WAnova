@@ -19,7 +19,7 @@ Custom print method for objects of class `wsize`.
 Displays the results of the sample size determination in a user-friendly format.
 }
 \examples{
-\dontrun{
+\donttest{
 # Print the results from the wsize function
 n <- c(10, 10, 10, 10)
 means <- c(1, 0, 0, -1)
