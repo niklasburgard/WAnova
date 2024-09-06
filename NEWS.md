@@ -1,4 +1,4 @@
-# WAnova 0.2.0
+# WAnova 0.3.0
 
 * initial release
 

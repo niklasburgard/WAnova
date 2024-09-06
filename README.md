@@ -160,7 +160,7 @@ print(result)
 
 To cite the WAnova package in publications, please use:
 ```
-Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.2.0. https://github.com/niklasburgard/WAnova
+Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.3.0. https://github.com/niklasburgard/WAnova
 ```
 You can also find a BibTeX entry for LaTeX users:
 ```
@@ -168,7 +168,7 @@ You can also find a BibTeX entry for LaTeX users:
   title = {WAnova: Welch's Anova from Summary Statistics},
   author = {Niklas Burgard},
   year = {2023},
-  note = {R package version 0.2.0},
+  note = {R package version 0.3.0},
   url = {https://github.com/niklasburgard/WAnova},
 }
 ```
