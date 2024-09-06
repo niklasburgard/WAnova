@@ -9,7 +9,7 @@ bibentry(
     url = "https://CRAN.R-project.org/package=WAnova",
     textVersion = paste("Burgard, N. (2023).",
                         "WAnova: Welch's Anova from Summary Statistics.",
-                        "Version 0.2.0",
+                        "Version 0.3.0",
                         "https://CRAN.R-project.org/package=WAnova")
 )
 
