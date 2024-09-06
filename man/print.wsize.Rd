@@ -24,7 +24,7 @@ Displays the results of the sample size determination in a user-friendly format.
 n <- c(10, 10, 10, 10)
 means <- c(1, 0, 0, -1)
 sd <- c(1, 1, 1, 1)
-result <- wsize(n, means, sd, power = 0.90, alpha = 0.05)
+result <- wanova_pwr.test(n, means, sd, power = 0.90, alpha = 0.05)
 print(result)
 }
 

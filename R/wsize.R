@@ -1,4 +1,4 @@
-#' @title Approximate Sample Size Determination for Welch’s F-Test
+#' @title wanova_pwr.test
 #'
 #' @description This function computes the approximate sample size required to achieve a desired power level for Welch's F-test in a one-way heteroscedastic ANOVA. The function takes the initial sample size, group means, and standard deviations, and iteratively determines the necessary sample size to meet the specified power and significance level.
 #'
@@ -18,7 +18,7 @@
 #' The output includes the sample size required for each group to achieve the specified power.
 #'
 #' Reference: Levy, K. J. (1978a). Some empirical power results associated with
-#' Welch’s robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43–48.
+#' Welch's robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43-48.
 #'
 #' @examples
 #' \dontrun{
@@ -58,6 +58,7 @@ wanova_pwr.test <- function(n, means, sd, power = 0.90, alpha = 0.05) {
   }
 
   result <- list(
+    k       = k,
     n       = n,
     alpha   = alpha,
     power   = round(apower, 2)
@@ -90,21 +91,20 @@ wanova_pwr.test <- function(n, means, sd, power = 0.90, alpha = 0.05) {
 #'
 #' @export
 print.wsize <- function(x, ...) {
+  k <- x$k
   n <- x$n
   alpha <- x$alpha
   power <- x$power
 
-  cat("\nApproximate sample size determinations for Welch’s F-test in one-way heteroscedastic ANOVA\n")
+  cat("\nApproximate sample size determinations for Welch's F-test in one-way heteroscedastic ANOVA\n")
   cat("\n")
   cat(sprintf("             n = %d\n", n))
   cat(sprintf("     sig.level = %.2f\n", alpha))
   cat(sprintf("         power = %.2f\n", power))
-
+  cat("   alternative = two-sided")
   if (length(n) == 1) {
-    cat("   alternative = two-sided")
-    cat("\n---\nNOTE: Same sample size for k-level groups\n")
+    cat("\n---\nNOTE: Equal sample size for %d levels\n", k)
   } else {
-    cat("   alternative = two-sided")
-    cat("\n---\nNOTE: Different sample sizes for groups\n")
+    cat("\n---\nNOTE: Different sample sizes for %d levels\n", length(n))
   }
 }

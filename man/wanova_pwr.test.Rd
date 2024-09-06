@@ -2,7 +2,7 @@
 % Please edit documentation in R/wsize.R
 \name{wanova_pwr.test}
 \alias{wanova_pwr.test}
-\title{Approximate Sample Size Determination for Welch’s F-Test}
+\title{wanova_pwr.test}
 \usage{
 wanova_pwr.test(n, means, sd, power = 0.9, alpha = 0.05)
 }
@@ -32,7 +32,7 @@ It uses the F-distribution to determine critical values and compute the power of
 The output includes the sample size required for each group to achieve the specified power.
 
 Reference: Levy, K. J. (1978a). Some empirical power results associated with
-Welch’s robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43–48.
+Welch's robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43-48.
 }
 \examples{
 \dontrun{
