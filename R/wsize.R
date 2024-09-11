@@ -21,7 +21,7 @@
 #' Welch's robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43-48.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Example usage of the wsize function
 #' n <- c(10, 10, 10, 10)
 #' means <- c(1, 0, 0, -1)
