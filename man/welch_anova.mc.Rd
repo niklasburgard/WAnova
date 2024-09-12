@@ -43,7 +43,7 @@ standard deviations, and sample sizes.
 means <- c(50, 55, 60)
 sds <- c(10, 12, 15)
 n <- c(30, 35, 40)
-result <- welch_anova.mc(means = means, sds = sds, n = n, n_sim = 1000, alpha = 0.05)
+result <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = 1000, alpha = 0.05)
 print(result)
 }
 
