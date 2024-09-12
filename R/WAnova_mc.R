@@ -27,21 +27,19 @@
 #' @export
 welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 0.05, adj = TRUE) {
 
-  shapiro_wilk_test <- function(data) {
-    residuals <- sweep(data, 2, colMeans(data))
-    combined_residuals <- as.vector(residuals)
-    p_values <- shapiro.test(combined_residuals)$p.value
-    return(p_values)
+  shapiro_wilk_test <- function(residuals) {
+    p_value <- shapiro.test(unlist(residuals))$p.value
+    return(p_value)
   }
 
-  homoscedasticity_test <- function(data) {
-    n_groups <- ncol(data)
+  homoscedasticity_test <- function(residuals) {
+    n_groups <- length(residuals)
     data_long <- data.frame(
-      value = as.vector(data),
-      group = factor(rep(1:n_groups, each = nrow(data)))
+      residual = unlist(residuals),
+      group = factor(rep(1:n_groups, sapply(residuals, length)))
     )
-    test_result <- leveneTest(value ~ group, data=data_long)
-    return(test_result$`Pr(>F)`[1])
+    p_value <- leveneTest(residual ~ group, data=data_long)
+    return(p_value$`Pr(>F)`[1])
   }
 
   if(is.null(sim_func)){
@@ -54,20 +52,20 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
   homoscedasticity_p_values_vector <- numeric(n_sim)
 
   for (i in 1:n_sim) {
-    simulated_data <- sapply(1:length(means), function(j) {
+    simulated_data_list <- lapply(1:length(means), function(j) {
       sim_func(n[j], means[j], sd[j])
     })
 
-    normality_p_values_vector[i] <- shapiro_wilk_test(simulated_data)
-    homoscedasticity_p_values_vector[i] <- homoscedasticity_test(simulated_data)
+    simulated_data_list <- lapply(simulated_data_list,na.omit)
+    means_of_groups <- sapply(simulated_data_list, mean)
+    residuals_list <- mapply(function(data, mean) data - mean, simulated_data_list, means_of_groups, SIMPLIFY = FALSE)
+
+    normality_p_values_vector[i] <- all(shapiro_wilk_test(residuals_list) > alpha)
+    homoscedasticity_p_values_vector[i] <- homoscedasticity_test(residuals_list)
   }
 
-  r_norm_prop <- sum(normality_p_values_vector > alpha)
-  n_norm_prop <- length(normality_p_values_vector)
-  r_homosc_prop <- sum(homoscedasticity_p_values_vector > alpha)
-  n_homosc_prop <- length(homoscedasticity_p_values_vector)
-  norm_prop <- (r_norm_prop+1)/(n_norm_prop+1)
-  homosc_prop <- (r_homosc_prop+1)/(n_homosc_prop+1)
+  norm_prop <- (sum(normality_p_values_vector > alpha) + 1) / (n_sim + 1)
+  homosc_prop <- (sum(homoscedasticity_p_values_vector > alpha) + 1) / (n_sim + 1)
 
   if (adj == FALSE){
     norm_prop <- mean(normality_p_values_vector > alpha)
@@ -76,7 +74,8 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
 
   result <- list(
     norm_prop = norm_prop,
-    homosc_prop = homosc_prop)
+    homosc_prop = homosc_prop
+  )
 
   class(result) <- c('simres', class(result))
   return(result)

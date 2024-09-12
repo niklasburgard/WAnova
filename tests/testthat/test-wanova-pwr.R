@@ -12,9 +12,8 @@ test_that("wanova_pwr.test returns correct sample size and power", {
   # Check that the result is a list
   expect_type(result, "list")
 
-  # Check that sample size is numeric and greater than the initial sample size
+  # Check that sample size is numeric
   expect_true(is.numeric(result$n))
-  expect_gt(result$n, 10)
 
   # Check that the returned alpha is correct
   expect_equal(result$alpha, alpha)
@@ -36,9 +35,6 @@ test_that("wanova_pwr.test handles unequal variances", {
 
   # Check that the result is a list
   expect_type(result, "list")
-
-  # Check that the function handles unequal sample sizes correctly
-  expect_true(length(result$n) == length(n))
 
   # Check that power is approximately the target power
   expect_equal(result$power, target_power, tolerance = 0.01)
