@@ -20,7 +20,7 @@
 #' means <- c(50, 55, 60)
 #' sds <- c(10, 12, 15)
 #' n <- c(30, 35, 40)
-#' result <- mc_residuals(means = means, sds = sds, n = n, n_sim = 1000, alpha = 0.05)
+#' result <- welch_anova.mc(means = means, sds = sds, n = n, n_sim = 1000, alpha = 0.05)
 #' print(result)
 #' }
 #'
@@ -28,7 +28,7 @@
 welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 0.05, adj = TRUE) {
 
   shapiro_wilk_test <- function(residuals) {
-    p_value <- shapiro.test(unlist(residuals))$p.value
+    p_value <- stats::shapiro.test(unlist(residuals))$p.value
     return(p_value)
   }
 
@@ -38,13 +38,13 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
       residual = unlist(residuals),
       group = factor(rep(1:n_groups, sapply(residuals, length)))
     )
-    p_value <- leveneTest(residual ~ group, data=data_long)
+    p_value <- car::leveneTest(residual ~ group, data=data_long)
     return(p_value$`Pr(>F)`[1])
   }
 
   if(is.null(sim_func)){
     sim_func <- function(n, mean, sd) {
-      rnorm(n = n, mean = mean, sd = sd)
+      base::rnorm(n = n, mean = mean, sd = sd)
     }
   }
 
@@ -56,7 +56,7 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
       sim_func(n[j], means[j], sd[j])
     })
 
-    simulated_data_list <- lapply(simulated_data_list,na.omit)
+    simulated_data_list <- lapply(simulated_data_list, base::na.omit)
     means_of_groups <- sapply(simulated_data_list, mean)
     residuals_list <- mapply(function(data, mean) data - mean, simulated_data_list, means_of_groups, SIMPLIFY = FALSE)
 
