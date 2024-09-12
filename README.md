@@ -176,7 +176,7 @@ result <- welch_anova.mc(means = means, sd = sd, n = n, n_sim = 1000, alpha = 0.
 print(result)
 ```
 
-***Note***: You can apply a continuity correction (r+1)/(N+1) to the resulting proportions by setting adj = TRUE (default). This is useful for improving the accuracy of estimates when proportions are small or close to 1. Without the correction, the original proportion estimate pp is calculated as the ratio of simulations where the residuals meet the assumption of normality or homoscedasticity (r) to the total number of simulations (N), with no adjustment applied.
+***Note***: You can apply a continuity correction (r+1)/(N+1) to the resulting proportions by setting adj = TRUE (default). This is useful for improving the accuracy of estimates when proportions are small or close to 1. Without the correction, the original proportion estimate p is calculated as the ratio of simulations where the residuals meet the assumption of normality or homoscedasticity (r) to the total number of simulations (N), with no adjustment applied.
 
 ***References:***
 ***Davison AC, Hinkley DV (1997)***. Bootstrap methods and their application. Cambridge University Press, Cambridge, United Kingdom
@@ -194,7 +194,7 @@ You can also find a BibTeX entry for LaTeX users:
   title = {WAnova: Welch's Anova from Summary Statistics},
   author = {Niklas Burgard},
   year = {2023},
-  note = {R package version 0.3.0},
+  note = {R package version 0.4.0},
   url = {https://github.com/niklasburgard/WAnova},
 }
 ```
