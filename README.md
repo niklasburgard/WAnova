@@ -186,7 +186,7 @@ print(result)
 
 To cite the WAnova package in publications, please use:
 ```
-Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.3.0. https://github.com/niklasburgard/WAnova
+Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.4.0. https://github.com/niklasburgard/WAnova
 ```
 You can also find a BibTeX entry for LaTeX users:
 ```
