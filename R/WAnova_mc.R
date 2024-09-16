@@ -44,7 +44,7 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
 
   if(is.null(sim_func)){
     sim_func <- function(n, mean, sd) {
-      rnorm(n = n, mean = mean, sd = sd)
+      stats::rnorm(n = n, mean = mean, sd = sd)
     }
   }
 
@@ -56,7 +56,7 @@ welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 
       sim_func(n[j], means[j], sd[j])
     })
 
-    simulated_data_list <- lapply(simulated_data_list, na.omit)
+    simulated_data_list <- lapply(simulated_data_list, stats::na.omit)
     means_of_groups <- sapply(simulated_data_list, mean)
     residuals_list <- mapply(function(data, mean) data - mean, simulated_data_list, means_of_groups, SIMPLIFY = FALSE)
 
