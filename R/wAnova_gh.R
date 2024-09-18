@@ -12,6 +12,9 @@
 #' standard errors, confidence intervals, t-values, degrees of freedom, and p-values.
 #' Significance codes are also included.
 #'
+#' This test performs multiple pairwise comparisons with Welch correction for unequal variances and sample sizes,
+#' and controls for the familywise error rate.
+#'
 #' @examples
 #' \donttest{
 #' probe_data <- data.frame(

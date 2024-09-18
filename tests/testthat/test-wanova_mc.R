@@ -44,3 +44,31 @@ test_that("welch_anova.mc works with a custom simulation function", {
   expect_true(result$norm_prop >= 0 && result$norm_prop <= 1)
   expect_true(result$homosc_prop >= 0 && result$homosc_prop <= 1)
 })
+
+test_that("welch_anova.mc works for different distributions", {
+  # Define test parameters
+  means <- c(50, 55, 60)
+  sds <- c(10, 12, 15)
+  n <- c(30, 35, 40)
+  alpha <- 0.05
+  n_sim <- 1000
+
+  # Test for uniform distribution
+  custom_uniform_func <- function(n, mean, sd) {
+    runif(n, min = mean - sd, max = mean + sd)
+  }
+  result_uniform <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = n_sim, alpha = alpha, sim_func = custom_uniform_func)
+  expect_is(result_uniform, "simres")
+  expect_true(result_uniform$norm_prop >= 0 && result_uniform$norm_prop <= 1)
+  expect_true(result_uniform$homosc_prop >= 0 && result_uniform$homosc_prop <= 1)
+
+  # Test for exponential distribution
+  custom_exp_func <- function(n, mean, sd) {
+    rate <- 1 / mean
+    rexp(n, rate = rate)
+  }
+  result_exponential <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = n_sim, alpha = alpha, sim_func = custom_exp_func)
+  expect_is(result_exponential, "simres")
+  expect_true(result_exponential$norm_prop >= 0 && result_exponential$norm_prop <= 1)
+  expect_true(result_exponential$homosc_prop >= 0 && result_exponential$homosc_prop <= 1)
+})

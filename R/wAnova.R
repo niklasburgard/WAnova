@@ -1,7 +1,7 @@
 #' @title welch_anova.test
 #'
-#' @description Welch's one-way ANOVA with fixed effects (between subjects analysis)
-#' from summary statistics with unequal (unknown) variances.
+#' @description Welch's one-way ANOVA with fixed effects for between subjects analysis
+#' from summary statistics with unequal variances.
 #'
 #'
 #' @param levels Vector with level names of the independent variable
@@ -14,8 +14,14 @@
 #' p-value and effect size omega-squared that can later be converted to a
 #' table-styled summary using summary()
 #'
-#' The adjusted omega squared estimator of the effect size is either calculated by the formula
-#' of of Albers and Lakens, Kirk or Caroll and Nordholm (Further notes see README file)
+#' Traditional omega squared assumes homogeneity of variances and is calculated from a standard ANOVA using unweighted means.
+#' The adjusted omega squared effect size in this function can be calculated using one of three methods: Albers and Lakens ("AnL"), Kirk ("Kirk"), or Carroll and Nordholm ("CaN").
+#' All three methods produce the same result when unweighted means are used.
+#'
+#' When parameters are derived from Welch's ANOVA, the Kirk and CaN methods adjust omega squared using weighted means from the F-statistic but do not account for the corrected within-group degrees of freedom.
+#' The AnL method provides a further adjustment by incorporating the corrected degrees of freedom, making it more appropriate for Welch's ANOVA and typically the preferred method for this analysis.
+#'
+#' Omega squared values range from -1 to 1
 #'
 #' Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. Journal of Experimental Social Psychology, 74, 187–195.
 #' Kirk, R. E. (1996). Practical significance: A concept whose time has come. Educational and Psychological Measurement, 56(5), 746-759.

@@ -8,21 +8,48 @@
 #' @param sd Vector of standard deviations for each group.
 #' @param n Vector of sample sizes for each group.
 #' @param n_sim Number of simulations to perform. Defaults to 1000.
-#' @param sim_func Function used for generating random samples. Defaults to rnorm().
+#' @param sim_func Function used for generating random samples. Defaults to `rnorm()` for normal distributions.
 #' @param alpha Significance level for normality and homoscedasticity tests. Defaults to 0.05.
 #' @param adj Logical, if TRUE applies continuity correction for proportions. Defaults to TRUE.
 #'
 #' @return A list of class "simres" containing the proportion of simulations where
 #' residuals are normally distributed and homoscedastic.
 #'
+#' The default assumption is that random numbers are drawn from a normally distributed sample using `rnorm()`.
+#' If your data follow a different distribution, you can provide a custom function through the `sim_func` parameter
+#' The custom function should take three arguments: `n` (sample size), `mean`, and `sd` (standard deviation), and should return a vector of random values.
+#' For example, to simulate data from a uniform distribution, you can pass:
+#' `sim_func = function(n, mean, sd) { runif(n, min = mean - sd, max = mean + sd) }`.
+#'
+#' You can also apply a continuity correction `(r+1)/(N+1)` to the resulting proportions by setting `adj = TRUE` (default).
+#' This correction improves the accuracy of estimates when proportions are small or close to 1. Without the correction,
+#' the original proportion estimate is calculated as the ratio of simulations where the residuals meet the assumption of
+#' normality or homoscedasticity to the total number of simulations, without adjustment.
+#'
 #' @examples
 #' \donttest{
+#' # Simulating normal distribution data
 #' means <- c(50, 55, 60)
 #' sds <- c(10, 12, 15)
 #' n <- c(30, 35, 40)
 #' result <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = 1000, alpha = 0.05)
 #' print(result)
+#'
+#' # Simulating uniform distribution data
+#' custom_sim_func <- function(n, mean, sd) {
+#'   runif(n, min = mean - sd, max = mean + sd)
 #' }
+#' result_uniform <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = 1000, alpha = 0.05, sim_func = custom_sim_func)
+#' print(result_uniform)
+#'
+#' # Simulating exponential distribution data
+#' custom_exp_func <- function(n, mean, sd) {
+#'   rate <- 1 / mean
+#'   rexp(n, rate = rate)
+#' }
+#' result_exponential <- welch_anova.mc(means = means, sd = sds, n = n, n_sim = 1000, alpha = 0.05, sim_func = custom_exp_func)
+#' print(result_exponential)
+#'}
 #'
 #' @export
 welch_anova.mc <- function(means, sd, n, n_sim = 1000, sim_func = NULL, alpha = 0.05, adj = TRUE) {
