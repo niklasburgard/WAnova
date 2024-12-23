@@ -21,6 +21,9 @@ games_howell.test(levels, n, means, sd, conf.level = 0.95)
 A data frame of class "wAnova_gh" containing the pairwise comparisons with mean differences,
 standard errors, confidence intervals, t-values, degrees of freedom, and p-values.
 Significance codes are also included.
+
+This test performs multiple pairwise comparisons with Welch correction for unequal variances and sample sizes,
+and controls for the familywise error rate.
 }
 \description{
 Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
