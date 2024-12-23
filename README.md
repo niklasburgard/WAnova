@@ -1,6 +1,6 @@
 # WAnova
 
-'WAnova' is an R package that provides functions for conducting Welch's ANOVA and Games-Howell post hoc tests based on summary statistics. These tests are particularly useful when working with unequal variances and sample sizes. Additionally, the package includes a Monte Carlo simulation to assess residual normality and homoscedasticity, with the option to apply a continuity correction for the resulting proportions.
+'WAnova' is an R package that provides functions for conducting Welch's ANOVA and Games-Howell post hoc tests based on summary statistics. These tests are particularly useful when working with unequal variances and sample sizes.
 
 ## Table of content
 
@@ -13,7 +13,6 @@
     3. [Example: Welch's ANOVA](#example-welchs-anova)
     4. [Example: Games-Howell Post Hoc Test](#example-games-howell-post-hoc-test)
     5. [Example: Approximate Sample Size Determination for Welch’s F-Test](#example-approximate-sample-size-determination-for-welchs-f-test)
-    6. [Example: Monte Carlo Simulation for Residual assessment](#example-monte-carlo-simulation-for-residual-assessment)
 5. [Citing WAnova](#citing-wanova)
 
 ## Installation
@@ -34,11 +33,10 @@ install.packages(setdiff(packages, rownames(installed.packages())))
 ## Features
 
 + ***Hartley's Fmax***: Perform Hartley's Fmax to check homogeneity of variances.
-+ ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (mean, standard deviation, sample size).
++ ***Welch's ANOVA***: Perform Welch's ANOVA based on summary statistics (means, standard deviations, sample sizes).
 + ***Games-Howell Post Hoc Test***: Conduct the Games-Howell post hoc test for multiple comparisons after Welch's ANOVA.
 + ***Effect Size Calculations:***: Calculate adjusted omega squared effect sizes for Welch's ANOVA using different methods ("AnL","Kirk","CaN").
 + ***Sample Size Estimation***: Caclulate the sample sizes based on desired Significance level and power
-+ ***Monte Carlo Simulation***: Assess the residual normality and homoscedasticity trough simulation, with optional correction applied to proportions
 
 ## Usage
 
@@ -48,7 +46,6 @@ fmax.test(levels,n,sd)
 welch_anova.test(levels, n, means, sd, effsize = c("AnL","Kirk","CaN")  
 games_howell.test(levels, n, means, sd, conf.level = 0.95)
 wanova_pwr.test(n, means, sd, power = 0.90, alpha = 0.05)
-welch_anova.mc(n,means, sd, n_sim = 1000, alpha = 0.05, adj = TRUE)
 
 ***levels*** Vector with level names of the independent variable  
 ***n***  Vector with sample size for each level  
@@ -58,8 +55,6 @@ welch_anova.mc(n,means, sd, n_sim = 1000, alpha = 0.05, adj = TRUE)
 ***conf.level*** Confidence level used in the computation
 ***power*** Desired power of the test
 ***alpha*** Significance level for the test
-***adj*** Logical, applies to continuity correction if TRUE
-***n_sim*** Number of Monte Carlo Simulations
 
 ### Example: Hartley's Fmax
 ```
@@ -161,32 +156,11 @@ print(result)
 ***Levy, K. J. (1978a)***. Some empirical power results associated with Welch’s robust analysis of variance technique. Journal of Statistical Computation and Simulation, 8, 43–48.  
 ***Show-Li, J., & Gwowen, S. (2014)***. Sample size determinations for Welch's test in one-way heteroscedastic ANOVA . British Psychological Society, 67(1), 72-93.
 
-### Example: Monte Carlo Simulation for Residual assessment
-```
-library(WAnova)
-
-means <- c(50, 55, 60)
-sd <- c(10, 12, 15)
-n <- c(30, 35, 40)
-
-# Perform Monte Carlo simulation
-result <- welch_anova.mc(means = means, sd = sd, n = n, n_sim = 1000, alpha = 0.05)
-
-# Print results
-print(result)
-```
-
-***Note***: You can apply a continuity correction (r+1)/(N+1) to the resulting proportions by setting adj = TRUE (default). This is useful for improving the accuracy of estimates when proportions are small or close to 1. Without the correction, the original proportion estimate p is calculated as the ratio of simulations where the residuals meet the assumption of normality or homoscedasticity (r) to the total number of simulations (N), with no adjustment applied.
-
-***References:***
-***Davison AC, Hinkley DV (1997)***. Bootstrap methods and their application. Cambridge University Press, Cambridge, United Kingdom
-
-
 ### Citing WAnova
 
 To cite the WAnova package in publications, please use:
 ```
-Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 0.4.0. https://github.com/niklasburgard/WAnova
+Niklas Burgard (2023). WAnova: Welch's Anova from Summary Statistics. R package version 1.1.0. https://github.com/niklasburgard/WAnova
 ```
 You can also find a BibTeX entry for LaTeX users:
 ```
@@ -194,7 +168,7 @@ You can also find a BibTeX entry for LaTeX users:
   title = {WAnova: Welch's Anova from Summary Statistics},
   author = {Niklas Burgard},
   year = {2023},
-  note = {R package version 0.4.0},
+  note = {R package version 1.1.0},
   url = {https://github.com/niklasburgard/WAnova},
 }
 ```

@@ -77,9 +77,9 @@ print.fmax_test <- function(x, ...) {
                   labels = c("***", "**", "*", ".", " "),
                   right = FALSE)
 
-  cat("Hartley's Fmax Test\n\n")
-  cat(sprintf(" %-5s %-5s %-5s %-8s %-6s\n", "Fmax", "df", "k", "p-value", "Sig. Code"))
-  cat(sprintf(" %-5.2f %-5.2f %-5.2f %-8.6f %s\n\n", fmax, df, k, pval, sig_code))
+  cat("Hartley's maximum F-ratio test of homogeneity of variancest\n\n")
+  cat(sprintf(" %-6s %-5s %-5s %-8s %-6s\n", "Fmax", "df", "k", "p-value", "Sig. Code"))
+  cat(sprintf(" %-5.4f %-5.1f %-5.1f %-8.4f %s\n\n", fmax, df, k, pval, sig_code))
   cat("\n---\n")
   cat("Significance codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n")
   cat("Note: Results applicable to normally distributed data with equal sample sizes.\n")
