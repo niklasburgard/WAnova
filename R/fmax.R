@@ -65,6 +65,33 @@ fmax_test <- function(levels,n,sd){
   return(result)
 }
 
+#' @title Print Method for fmax_test Objects
+#'
+#' @description
+#' Custom print method for objects of class `fmax_test`, providing a detailed
+#' formatted output of the Fmax test results.
+#'
+#' @param x An object of class `fmax_test`.
+#' @param ... Additional arguments passed to other methods (currently unused).
+#'
+#' @return Prints the formatted results to the console.
+#'
+#' @details
+#' This method displays the Fmax value, degrees of freedom, the number of groups,
+#' the p-value, and the significance code. Significance codes indicate the level
+#' of statistical significance:
+#' - 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1.
+#'
+#' @examples
+#' \donttest{
+#' # Example usage:
+#' result <- fmax_test(
+#'   levels = c("A", "B", "C"),
+#'   n = c(10, 10, 10),
+#'   sd = c(4.0, 9.0, 16.0)
+#' )
+#' print(result)
+#' }
 #' @export
 print.fmax_test <- function(x, ...) {
   fmax <- x$fmax

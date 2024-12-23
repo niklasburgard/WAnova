@@ -67,6 +67,44 @@ games_howell.test <- function(levels, n, means, sd, conf.level = 0.95) {
   return(result)
 }
 
+#' @title Print Method for Games-Howell Test Results
+#'
+#' @description
+#' This method provides a formatted table-style output for objects of class `wAnova_gh`,
+#' containing pairwise comparisons from the Games-Howell post hoc test.
+#'
+#' @param x An object of class `wAnova_gh` (result from `games_howell.test`).
+#' @param ... Additional arguments (currently unused).
+#'
+#' @return Prints a formatted table of Games-Howell test results to the console.
+#'
+#' @details
+#' The printed output includes pairwise comparisons with the following information:
+#' - Comparison: The pair of groups being compared.
+#' - M.diff: Mean difference.
+#' - SE: Standard error of the difference.
+#' - Low: Lower bound of the confidence interval.
+#' - Upp: Upper bound of the confidence interval.
+#' - t: Test statistic.
+#' - df: Degrees of freedom.
+#' - pval: p-value.
+#' - signif: Significance codes indicating the strength of evidence against the null hypothesis.
+#'
+#' Significance codes are assigned as:
+#' - 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#'
+#' @examples
+#' \donttest{
+#' probe_data <- data.frame(
+#'   group = c("probe_a", "probe_b", "probe_c"),
+#'   size = c(10, 9, 8),
+#'   mean = c(43.00000, 33.44444, 35.75000),
+#'   sd = c(4.027682, 9.302031, 16.298554)
+#' )
+#' result <- games_howell.test(probe_data$group, probe_data$size, probe_data$mean, probe_data$sd)
+#' print(result)
+#' }
+#'
 #' @export
 print.wAnova_gh <- function(x, ...) {
   cat("Games-Howell Post Hoc Test for Multiple Comparisons\n\n")

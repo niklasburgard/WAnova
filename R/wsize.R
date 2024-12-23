@@ -69,25 +69,39 @@ wanova_pwr.test <- function(n, means, sd, power = 0.90, alpha = 0.05) {
   return(result)
 }
 
-#' Print Method for `wsize` Objects
+#' @title Print Method for Sample Size Determination (`wsize`)
 #'
-#' Custom print method for objects of class `wsize`.
-#' Displays the results of the sample size determination in a user-friendly format.
+#' @description
+#' This method provides a formatted summary of results for objects of class `wsize`,
+#' which are the output from the `wanova_pwr.test` function. The output includes
+#' the sample sizes required to achieve the desired power for Welch's F-test in a
+#' one-way heteroscedastic ANOVA.
 #'
-#' @param x An object of class \code{wsize}.
-#' @param ... Additional arguments passed to or from other methods.
+#' @param x An object of class `wsize` (result from `wanova_pwr.test`).
+#' @param ... Additional arguments (currently unused).
 #'
 #' @return Prints the sample size determination results to the console.
 #'
+#' @details
+#' The printed output includes:
+#' - **n**: The required sample size for each group. If all groups require equal sizes, only one value is shown.
+#' - **sig.level**: The significance level (\eqn{\alpha}) used in the calculation.
+#' - **power**: The calculated power of the test, rounded to two decimal places.
+#' - **alternative**: Indicates that a two-sided alternative hypothesis is assumed.
+#'
+#' Additional notes are provided when all groups have equal sample sizes or when group sizes differ.
+#'
 #' @examples
 #' \donttest{
-#' # Print the results from the wsize function
+#' # Example usage of the wanova_pwr.test function
 #' n <- c(10, 10, 10, 10)
 #' means <- c(1, 0, 0, -1)
 #' sd <- c(1, 1, 1, 1)
 #' result <- wanova_pwr.test(n, means, sd, power = 0.90, alpha = 0.05)
 #' print(result)
 #'}
+#'
+#' @seealso \code{\link{wanova_pwr.test}}
 #'
 #' @export
 print.wsize <- function(x, ...) {

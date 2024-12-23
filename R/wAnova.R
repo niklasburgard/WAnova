@@ -88,6 +88,43 @@ welch_anova.test <- function(levels, n, means, sd, effsize = "AnL") {
   return(result)
 }
 
+#' @title Summary Method for wAnova Objects
+#'
+#' @description
+#' This method provides a formatted summary output for objects of class `wAnova`,
+#' including the F-statistic, degrees of freedom, p-value, and adjusted omega squared effect size.
+#'
+#' @param object An object of class `wAnova`.
+#' @param ... Additional arguments (currently unused).
+#'
+#' @return Prints a formatted summary of Welch's ANOVA results to the console.
+#'
+#' @details
+#' The summary includes the F-value, degrees of freedom (between and within groups),
+#' p-value with significance codes, and the adjusted omega squared effect size estimate.
+#' The method assumes data were derived from a Welch's one-way ANOVA analysis.
+#'
+#' Significance codes indicate the following levels:
+#' - 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#'
+#' @examples
+#' \donttest{
+#' probe_data <- data.frame(
+#'   group = c("probe_a", "probe_b", "probe_c"),
+#'   size = c(10, 9, 8),
+#'   mean = c(43.00000, 33.44444, 35.75000),
+#'   sd = c(4.027682, 9.302031, 16.298554)
+#' )
+#' result <- welch_anova.test(
+#'   levels = probe_data$group,
+#'   n = probe_data$size,
+#'   means = probe_data$mean,
+#'   sd = probe_data$sd,
+#'   effsize = "Kirk"
+#' )
+#' summary(result)
+#'}
+#'
 #' @export
 summary.wAnova <- function(object, ...) {
   response <- object$response
